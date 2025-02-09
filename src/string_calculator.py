@@ -1,3 +1,4 @@
+import re
 from typing import Tuple
 
 
@@ -6,14 +7,17 @@ class StringCalculator:
     def add(self, numbers: str) -> int:
         if not numbers:
             return 0
-
+        
         # Check for custom delimiter
         if numbers.startswith("//"):
             delimiter, numbers = self._parse_delimiter(numbers)
-            numbers = numbers.replace('\n', delimiter)
+            # Now we use the custom delimiter to split the numbers
+            numbers_list = numbers.split(delimiter)
+        else:
+            # Default handling for commas and newlines
+            numbers_list = re.split('[,\n]', numbers)
         
         # Check for negative numbers
-        numbers_list = numbers.split(',')
         negatives = [n for n in numbers_list if int(n) < 0]
         
         if negatives:
