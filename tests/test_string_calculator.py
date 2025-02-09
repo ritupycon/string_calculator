@@ -33,6 +33,11 @@ class TestStringCalculator(unittest.TestCase):
     
     def test_large_numbers(self):
         self.assertEqual(self.calc.add("1000,2000,3000"), 6000)
+    
+    def test_all_negative_numbers(self):
+        with self.assertRaises(ValueError) as context:
+            self.calc.add("-1,-2,-3,-4")
+        self.assertTrue("negative numbers not allowed -1, -2, -3, -4" in str(context.exception))
 
 if __name__ == '__main__':
     unittest.main()
