@@ -15,6 +15,9 @@ class TestStringCalculator(unittest.TestCase):
     
     def test_two_numbers(self):
         self.assertEqual(self.calc.add("1,5"), 6)
+    
+    def test_newline_separator(self):
+        self.assertEqual(self.calc.add("1\n2,3"), 6)
 
 if __name__ == '__main__':
     unittest.main()
