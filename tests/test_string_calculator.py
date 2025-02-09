@@ -2,6 +2,7 @@ import unittest
 
 from src.string_calculator import StringCalculator
 
+
 class TestStringCalculator(unittest.TestCase):
     
     def setUp(self):
