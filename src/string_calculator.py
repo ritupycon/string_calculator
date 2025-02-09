@@ -11,8 +11,15 @@ class StringCalculator:
         if numbers.startswith("//"):
             delimiter, numbers = self._parse_delimiter(numbers)
             numbers = numbers.replace('\n', delimiter)
-
-        return sum(map(int, numbers.split(',')))
+        
+        # Check for negative numbers
+        numbers_list = numbers.split(',')
+        negatives = [n for n in numbers_list if int(n) < 0]
+        
+        if negatives:
+            raise ValueError(f"negative numbers not allowed {', '.join(negatives)}")
+        
+        return sum(map(int, numbers_list))
 
     def _parse_delimiter(self, numbers: str) -> Tuple[str, str]:
         delimiter_line_end = numbers.index("\n")
