@@ -30,6 +30,9 @@ class TestStringCalculator(unittest.TestCase):
     
     def test_multiple_custom_delimiters(self):
         self.assertEqual(self.calc.add("//;\n1;2;3;4"), 10)
+    
+    def test_large_numbers(self):
+        self.assertEqual(self.calc.add("1000,2000,3000"), 6000)
 
 if __name__ == '__main__':
     unittest.main()
